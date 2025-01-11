@@ -1,0 +1,29 @@
+/* bugSolution.css */
+
+/* Correcting unit incompatibility */
+.container {
+  width: calc(50% - 20px); /* Correct: Explicitly subtract pixels from percentage */
+}
+
+/* Correcting missing space error */
+.element {
+  margin: calc(10px + 5px); /* Correct: Spaces added around the + operator */
+}
+
+/* Handling potential invalid results */
+.item {
+  width: calc(min(100px, 50%)); /* Ensures width doesn't exceed 100px or 50% */
+  width: max(0, calc(100px - var(--myVar))); /* Prevents negative width values */
+}
+:root {
+  --myVar: 200px;
+}
+
+/*Alternative solution for negative values*/
+.item2 {
+  width: clamp(0, calc(100px - var(--myVar)), 100px);
+}
+/*Better solution to handle potential invalid result*/
+.item3 {
+  width: clamp(0, calc(100px - var(--myVar)), 100px);
+}
